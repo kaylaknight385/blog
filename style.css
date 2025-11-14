@@ -1,33 +1,33 @@
 * {
-    margin: 0;
+    margin: 2;
     padding: 0;
     box-sizing: border-box;
+    justify-content: center;
 }
 
 body {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    background-image: url('https://64.media.tumblr.com/5a4b1d720d858e235fefbfb94441251f/c0f9765d0a1b3774-00/s250x400/704ef5b1c0b22e37f384352035dc64b426d523b5.png');
+    font-family: Georgia, "Times New Roman", Times, serif;
+    background-image: url("https://64.media.tumblr.com/5a4b1d720d858e235fefbfb94441251f/c0f9765d0a1b3774-00/s250x400/704ef5b1c0b22e37f384352035dc64b426d523b5.png");
     background-size: 40%;
     min-height: 100vh;
     padding: 20px;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
 header {
     text-align: center;
-    color: white;
+    color: rgb(206, 126, 126);
     margin-bottom: 30px;
 }
 
 header h1 {
-    text-align: center;
     font-size: 2.5rem;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 header p {
@@ -39,22 +39,25 @@ header p {
     background: rgb(254, 239, 255);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     margin-bottom: 30px;
 }
 
 .form-section h2 {
-    color: #ec00b1;
+    text-align: center;
+    color: #c40093;
     margin-bottom: 20px;
-    font-size: 1.5rem;
-    text-shadow: 2px 1px 2px rgb(228, 122, 255);
+    font-size: 2rem;
+    text-shadow: 2px 1px 2px rgb(255, 156, 225);
 }
 
 .form-group {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .form-group label {
+    align-items: center;
     display: block;
     margin-bottom: 8px;
     color: #333;
@@ -63,13 +66,15 @@ header p {
 
 .form-group input:focus,
 .form-group textarea:focus {
+    justify-content: center;
     outline: none;
     border-color: #1d0818;
 }
 
 .form-group textarea {
-    min-height: 150px;
-    resize: vertical;
+    justify-content: center;
+    min-height: 50px
+    resize;
 }
 
 .error-message {
@@ -83,3 +88,99 @@ header p {
     display: block;
 }
 
+.image-btn,
+.img-btn-secondary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.image-btn span,
+.img-btn-secondary span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #8704bb;
+}
+
+.posts-section {
+    background: rgb(254, 239, 255);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.posts-section h2 {
+    color: #bf05c5;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-shadow: 2px 1px 2px rgb(255, 156, 225);
+}
+
+#postsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post-card {
+    background: #f8f9fa;
+    border-left: 4px solid hsl(305, 100%, 53%);
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.post-title {
+    font-size: 1.3rem;
+    color: #f70de3;
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+}
+
+.post-timestamp {
+    color: #7f8c8d;
+    font-size: 0.85rem;
+    margin-left: 10px;
+}
+
+.post-content {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+}
+
+.post-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+    background-color: #bf05c5;
+    color: #f8f9fa;
+}

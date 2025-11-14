@@ -1,4 +1,4 @@
-let post = []
+let posts = []
 
 const postForm = document.getElementById('postForm');
 const postTitleInput = document.getElementById('postTitle');
@@ -15,13 +15,13 @@ window.addEventListener('DOMContentLoaded', function() {
     renderPosts();
 });
 
-function savedPostsToLocalStorage() {
-    localStorage.setItem('blogPost', JSON.stringify(posts));
-    console.log('Posts Saved!, posts');
+function savePostsToLocalStorage() {
+    localStorage.setItem('blogPosts', JSON.stringify(posts));
+    console.log('Posts Saved!', posts);
 }
 
 function loadPostFromLocalStorage() {
-    const savedPosts = localStorage.getItem('BlogPosts');
+    const savedPosts = localStorage.getItem('blogPosts');
 
     if (savedPosts) {
         posts = JSON.parse(savedPosts);
@@ -111,7 +111,7 @@ function renderPosts() {
     
         postCard.innerHTML = `
             <div class="post-header">
-                <h3 class="post-title">${escapeHtml(post.timestamp)}</h3>
+                <h3 class="post-title">${escapeHtml(post.title)}</h3>
                 <span class="post-timestamp">${formatDate(post.timestamp)}</span>
             </div>
             <p class="post-content">${escapeHtml(post.content)}</p>
@@ -133,12 +133,6 @@ function escapeHtml(text) {
 }
 
 function attachPostEventListeners() {
-    const editButtons = document.querySelectorAll('.btn-edit');
-    editButtons.forEach(btn => {
-        btn.addEventListener('click', handleEdit);
-    });
-            
-        
     const deleteButtons = document.querySelectorAll('.btn-delete');
     deleteButtons.forEach(btn => {
         btn.addEventListener('click', handleDelete);
@@ -156,6 +150,8 @@ postForm.addEventListener('submit', function(event) {
 
     const title = postTitleInput.value.trim();
     const content = postContentInput.value.trim();
+
+    createPost(title, content);
 });
 
  function createPost(title, content) {
