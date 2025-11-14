@@ -172,3 +172,17 @@ postForm.addEventListener('submit', function(event) {
     console.log('New post created:', newPost);
 }
 
+function handleDelete(event) {
+    const postId = event.target.dataset.id;
+            
+    if (!confirm('Are you sure you want to delete this post?')) {
+                return;
+    }
+
+    posts = posts.filter(p => p.id !== postId);
+            
+    savePostsToLocalStorage();
+    renderPosts();
+
+    console.log('Post deleted:', postId);
+}
