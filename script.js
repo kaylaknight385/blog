@@ -64,7 +64,7 @@ function validateTitle() {
         showError(titleError, "Put a title!");
         return false;
     } else if (postTitleInput.validity.tooShort) {
-        showError(titleError, "Yup and its gotta be longer than 3 letters!");
+        showError(titleError, "Yup and its gotta be longer than 3 characters!");
         return false;
     } else {
         clearError(titleError);
@@ -72,4 +72,103 @@ function validateTitle() {
     }
 }
 
-function 
+function validateContent() {
+    const content = postContentInput.value.trim();
+
+    if (postContentInput.validity.valueMissing) {
+        showError(contentError, "Type SUMN");
+        return false;
+    } else if (postContentInput.validity.tooShort) {
+        showError(contentError, "Mhm nice and looong. at LEAT 10 characters");
+        return false; 
+    } else {
+        clearError(contentError);
+        return true;
+    }
+}
+
+postTitleInput.addEventListener('input', validateTitle);
+postContentInput.addEventListener('input', validateContent);
+
+function renderPosts() {
+    postsContainer.innerHTML = '';
+
+    if (posts.length === 0) {
+        postsContainer.innerHTML = `
+            <div class="empty-state">
+                <div style="Font-size: 3rem;"></div>
+                <p>No post yet!<p>
+            </div>`;
+        return;
+    }
+
+    const sortedPosts = [...posts].reverse();
+
+    sortedPosts.forEach(post => {
+        const postCard = document.createElement('div');
+        postCard.className = 'post-card';
+        postCard.dataset.id = post.id;
+    
+        postCard.innerHTML = `
+            <div class="post-header">
+                <h3 class="post-title">${escapeHtml(post.timestamp)}</h3>
+                <span class="post-timestamp">${formatDate(post.timestamp)}</span>
+            </div>
+            <p class="post-content">${escapeHtml(post.content)}</p>
+                <div class="post-actions">
+                    <button class="btn-edit" data-id="${post.id}">Edit</button>
+                    <button class="btn-delete" data-id="${post.id}">Delete</button>
+                </div>
+            `; 
+        postsContainer.appendChild(postCard);
+    });
+
+    attachPostEventListeners();
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function attachPostEventListeners() {
+    const editButtons = document.querySelectorAll('.btn-edit');
+    editButtons.forEach(btn => {
+        btn.addEventListener('click', handleEdit);
+    });
+            
+        
+    const deleteButtons = document.querySelectorAll('.btn-delete');
+    deleteButtons.forEach(btn => {
+        btn.addEventListener('click', handleDelete);
+    });
+}
+
+postForm.addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    const isTitleValid= validateTitle();
+    const isContentValid = validateContent();
+    if (!isTitleValid || !isContentValid) {
+        return;
+    }
+
+    const title = postTitleInput.value.trim();
+    const content = postContentInput.value.trim();
+});
+
+ function createPost(title, content) {
+    const newPost = {id: generateId(), title: title, content: content, timestamp: Date.now()};
+            
+    posts.push(newPost);
+    savePostsToLocalStorage();
+    renderPosts();
+            
+    postForm.reset();
+    clearError(titleError);
+    clearError(contentError);
+            
+    console.log('New post created:', newPost);
+}
+
