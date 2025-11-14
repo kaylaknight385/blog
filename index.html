@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>BK Blog</title>
+</head>
+<body>
+    <section class="form-section">
+        <h2 id="formTitle">Create New Post</h2>
+        <div id="editingIndicator" class="editing-mode" style="display: none;">
+            <strong>Editing Mode:</strong> <span id="editingPostTitle"></span>
+            </div>
+
+            <form id="postForm">
+                <div class="form-group">
+                    <label for="postTitle">Post Title</label>
+                    <input type="text" id="postTitle" placeholder="What's up gorgeous...?" minlength="3" required>
+                    <span id="titleError" class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="postContent">Post Content</label>
+                    <textarea id="postContent" placeholder="Share your thoughts..." minlength="10" required></textarea>
+                    <span id="contentError" class="error-message"></span>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn" id="submitBtn">Publish Post</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn" style="display: none;">Cancel Edit</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="posts-section">
+            <h2>Your Posts</h2>
+            <div id="postsContainer">
+                <div class="empty-state">
+                    <div style="font-size: 3rem;"></div>
+                    <p>No posts yet. Start writing!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
